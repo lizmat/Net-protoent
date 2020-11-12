@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use Net::protoent;
 
@@ -22,4 +22,4 @@ is getprotobyname("thisnameshouldnotexist"), Nil,
 is getprotobynumber(99999), Nil,
   'did lookup by non-existing proto fail in scalar context';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

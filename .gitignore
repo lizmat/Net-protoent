@@ -7,3 +7,4 @@
 .precomp/
 /releases/
 /Net-protoent-*
+/lib/P5getprotobyname.pm6

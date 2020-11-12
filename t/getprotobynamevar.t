@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use Net::protoent :FIELDS;
 
@@ -22,4 +22,4 @@ nok defined($p_name), 'did lookup by non-existing name fail';
 getprotobynumber(99999);
 nok defined($p_name), 'did lookup by non-existing proto fail';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

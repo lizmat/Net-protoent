@@ -1,10 +1,10 @@
-use v6.c;
+use v6.*;
 
 our $p_name    is export(:FIELDS);
 our @p_aliases is export(:FIELDS);
 our $p_proto   is export(:FIELDS);
 
-class Net::protoent:ver<0.0.1>:auth<cpan:ELIZABETH> {
+class Net::protoent:ver<0.0.2>:auth<cpan:ELIZABETH> {
     has Str $.name;
     has     @.aliases;
     has Int $.proto;
@@ -27,15 +27,18 @@ sub populate(@fields) {
 }
 
 my sub getprotobyname(Str() $name) is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname; populate(getprotobyname($name))
+    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    populate(getprotobyname($name))
 }
 
 my sub getprotobynumber(Int:D $proto) is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname; populate(getprotobynumber($proto))
+    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    populate(getprotobynumber($proto))
 }
 
 my sub getprotoent() is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname; populate(getprotoent)
+    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    populate(getprotoent)
 }
 
 my proto sub getproto(|) is export(:DEFAULT:FIELDS) {*}
@@ -47,17 +50,19 @@ my multi sub getproto(Str:D $nam) is export(:DEFAULT:FIELDS) {
 }
 
 my constant &setprotoent is export(:DEFAULT:FIELDS) = do {
-    use P5getprotobyname; &setprotoent
+    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    &setprotoent
 }
 my constant &endprotoent is export(:DEFAULT:FIELDS) = do {
-    use P5getprotobyname; &endprotoent
+    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    &endprotoent
 }
 
 =begin pod
 
 =head1 NAME
 
-Net::protoent - Port of Perl 5's Net::protoent
+Raku port of Perl's Net::protoent module
 
 =head1 SYNOPSIS
 
@@ -71,6 +76,9 @@ Net::protoent - Port of Perl 5's Net::protoent
     print "proto for $p_name is $p_proto, aliases are @p_aliases\n";
 
 =head1 DESCRIPTION
+
+This module tries to mimic the behaviour of Perl's C<Net::protoent> module
+as closely as possible in the Raku Programming Language.
 
 This module's exports C<getprotobyname>, C<getprotobynumber>, and
 C<getprotoent> functions that return C<Netr::protoent> objects. This object
@@ -86,6 +94,12 @@ $proto_obj.name corresponds to $p_name if you import the fields.
 The C<getproto> function is a simple front-end that forwards a numeric
 argument to C<getprotobynumber> and the rest to C<getprotobyname>.
 
+=head1 PORTING CAVEATS
+
+This module depends on the availability of POSIX semantics.  This is
+generally not available on Windows, so this module will probably not work
+on Windows.
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -95,12 +109,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018,2020 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/lizmat/Net-protoent.svg?branch=master)](https://travis-ci.org/lizmat/Net-protoent)
-
 NAME
 ====
 
-Net::protoent - Port of Perl 5's Net::protoent
+Raku port of Perl's Net::protoent module
 
 SYNOPSIS
 ========
@@ -20,11 +18,18 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
+This module tries to mimic the behaviour of Perl's `Net::protoent` module as closely as possible in the Raku Programming Language.
+
 This module's exports `getprotobyname`, `getprotobynumber`, and `getprotoent` functions that return `Netr::protoent` objects. This object has methods that return the similarly named structure field name from the C's protoent structure from netdb.h, stripped of their leading "p_" parts, namely name, aliases, and proto.
 
 You may also import all the structure fields directly into your namespace as regular variables using the :FIELDS import tag. Access these fields as variables named with a preceding p_ in front their method names. Thus, $proto_obj.name corresponds to $p_name if you import the fields.
 
 The `getproto` function is a simple front-end that forwards a numeric argument to `getprotobynumber` and the rest to `getprotobyname`.
+
+PORTING CAVEATS
+===============
+
+This module depends on the availability of POSIX semantics. This is generally not available on Windows, so this module will probably not work on Windows.
 
 AUTHOR
 ======
@@ -36,9 +41,9 @@ Source can be located at: https://github.com/lizmat/Net-protoent . Comments and 
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018,2020 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
