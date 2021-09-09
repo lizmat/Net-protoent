@@ -1,19 +1,19 @@
 {
-  "auth": "cpan:ELIZABETH",
+  "auth": "zef:lizmat",
   "authors": [
     "Elizabeth Mattijsen"
   ],
   "build-depends": [
   ],
   "depends": [
-    "P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>"
+    "P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>"
   ],
   "description": "Raku port of Perl's Net::protoent module",
   "license": "Artistic-2.0",
   "name": "Net::protoent",
   "perl": "6.c",
   "provides": {
-    "Net::protoent": "lib/Net/protoent.pm6"
+    "Net::protoent": "lib/Net/protoent.rakumod"
   },
   "resources": [
   ],
@@ -24,5 +24,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

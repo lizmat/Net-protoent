@@ -4,7 +4,7 @@ our $p_name    is export(:FIELDS);
 our @p_aliases is export(:FIELDS);
 our $p_proto   is export(:FIELDS);
 
-class Net::protoent:ver<0.0.2>:auth<cpan:ELIZABETH> {
+class Net::protoent:ver<0.0.3>:auth<zef:lizmat> {
     has Str $.name;
     has     @.aliases;
     has Int $.proto;
@@ -27,17 +27,17 @@ sub populate(@fields) {
 }
 
 my sub getprotobyname(Str() $name) is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    use P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>;
     populate(getprotobyname($name))
 }
 
 my sub getprotobynumber(Int:D $proto) is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    use P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>;
     populate(getprotobynumber($proto))
 }
 
 my sub getprotoent() is export(:DEFAULT:FIELDS) {
-    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    use P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>;
     populate(getprotoent)
 }
 
@@ -50,11 +50,11 @@ my multi sub getproto(Str:D $nam) is export(:DEFAULT:FIELDS) {
 }
 
 my constant &setprotoent is export(:DEFAULT:FIELDS) = do {
-    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    use P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>;
     &setprotoent
 }
 my constant &endprotoent is export(:DEFAULT:FIELDS) = do {
-    use P5getprotobyname:ver<0.0.5>:auth<cpan:ELIZABETH>;
+    use P5getprotobyname:ver<0.0.6>:auth<zef:lizmat>;
     &endprotoent
 }
 
@@ -102,14 +102,14 @@ on Windows.
 
 =head1 AUTHOR
 
-Elizabeth Mattijsen <liz@wenzperl.nl>
+Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/Net-protoent . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018,2020 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
